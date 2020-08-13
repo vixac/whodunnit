@@ -6,12 +6,12 @@ import XCTest
 class FiltFilterTests: XCTestCase {
     
     func testFileTypes() {
-        XCTAssertEqual(FileSummary(fullPath: "this/this.a/swiftyfile.swift").suffix, "swift")
-        XCTAssertEqual(FileSummary(fullPath: "this/this.a/objc.m").suffix, "m")
-        XCTAssertEqual(FileSummary(fullPath: "this/this.a/objc.proj").suffix, "proj")
-        XCTAssertEqual(FileSummary(fullPath: "this/this.a/header.h").suffix, "h")
-        XCTAssertEqual(FileSummary(fullPath: "this/this.a/header.xib").suffix, "xib")
-        XCTAssertEqual(FileSummary(fullPath: "this/this.a/header.storyboard").suffix, "storyboard")
+        XCTAssertEqual(FileNameSummary(fullPath: "this/this.a/swiftyfile.swift").suffix, "swift")
+        XCTAssertEqual(FileNameSummary(fullPath: "this/this.a/objc.m").suffix, "m")
+        XCTAssertEqual(FileNameSummary(fullPath: "this/this.a/objc.proj").suffix, "proj")
+        XCTAssertEqual(FileNameSummary(fullPath: "this/this.a/header.h").suffix, "h")
+        XCTAssertEqual(FileNameSummary(fullPath: "this/this.a/header.xib").suffix, "xib")
+        XCTAssertEqual(FileNameSummary(fullPath: "this/this.a/header.storyboard").suffix, "storyboard")
     }
     
     func testFilter() {

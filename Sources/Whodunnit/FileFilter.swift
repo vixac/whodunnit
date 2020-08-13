@@ -25,7 +25,7 @@ public enum FileType: String  {
     }
 }
 
-public struct FileSummary {
+public struct FileNameSummary {
     //VX:TODO we could extract the xcode project, or underlying directory, or something.
     public let fullPath: String
     let type: FileType //VX:TODO RM
@@ -39,15 +39,15 @@ public struct FileSummary {
 }
 
 public class FileFilter {
-    public static func keepOnly(types: [FileType], fileNames: [String]) -> [FileSummary] {
-        let allSummaries: [FileSummary] = fileNames.map { FileSummary(fullPath: $0) }
+    public static func keepOnly(types: [FileType], fileNames: [String]) -> [FileNameSummary] {
+        let allSummaries: [FileNameSummary] = fileNames.map { FileNameSummary(fullPath: $0) }
         let setOfTypes = Set(types)
         let filtered = allSummaries.filter { setOfTypes.contains($0.type)}
         return filtered
     }
     
-    public static func keepOnly(types: [String], fileNames: [String]) -> [FileSummary] {
-        let allSummaries: [FileSummary] = fileNames.map { FileSummary(fullPath: $0) }
+    public static func keepOnly(types: [String], fileNames: [String]) -> [FileNameSummary] {
+        let allSummaries: [FileNameSummary] = fileNames.map { FileNameSummary(fullPath: $0) }
         let setOfTypes = Set(types)
         let filtered = allSummaries.filter { setOfTypes.contains($0.suffix)}
         return filtered
