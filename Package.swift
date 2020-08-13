@@ -10,7 +10,7 @@ let package = Package(
     ],
     products: [
         .library(name: "Whodunnit", targets: ["Whodunnit"]),
-        .executable(name: "WhodunnitMain", targets: ["WhodunnitMain"]),
+        .executable(name: "WhoFiles", targets: ["WhodunnitMain"]),
     ],
     dependencies: [
     .package(url: "https://github.com/apple/swift-argument-parser", from: "0.2.0")],

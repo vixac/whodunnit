@@ -1,8 +1,12 @@
 .build/manifest.db
+.gitignore
+Package.resolved
 Package.swift
-Sources/Whodunnit/x.swift
+Sources/Whodunnit/Exec.swift
+Sources/Whodunnit/FileFilter.swift
+Sources/WhodunnitMain/ArgParser.swift
 Sources/WhodunnitMain/main.swift
-Tests/WhodunnitTests/y.swift
+Tests/WhodunnitTests/FileFilterTests.swift
 Whodunnit.xcodeproj/WhodunnitTests_Info.plist
 Whodunnit.xcodeproj/Whodunnit_Info.plist
 Whodunnit.xcodeproj/project.pbxproj
@@ -12,3 +16,6 @@ Whodunnit.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsetting
 Whodunnit.xcodeproj/project.xcworkspace/xcuserdata/shifu.xcuserdatad/UserInterfaceState.xcuserstate
 Whodunnit.xcodeproj/xcshareddata/xcschemes/Whodunnit-Package.xcscheme
 Whodunnit.xcodeproj/xcshareddata/xcschemes/WhodunnitMain.xcscheme
+output/all_files_output.txt
+scripts/all_files.sh
+scripts/blame_file.sh
