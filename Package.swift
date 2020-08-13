@@ -12,10 +12,11 @@ let package = Package(
         .library(name: "Whodunnit", targets: ["Whodunnit"]),
         .executable(name: "WhodunnitMain", targets: ["WhodunnitMain"]),
     ],
-    dependencies: [],
+    dependencies: [
+    .package(url: "https://github.com/apple/swift-argument-parser", from: "0.2.0")],
     targets: [
         .target(name: "Whodunnit", dependencies: [] , path: "Sources/Whodunnit"), // no test
-         .target(name: "WhodunnitMain", dependencies: ["Whodunnit"] , path: "Sources/WhodunnitMain"), // no test
+         .target(name: "WhodunnitMain", dependencies: ["Whodunnit", "ArgumentParser"] , path: "Sources/WhodunnitMain"), // no test
         .testTarget(name: "WhodunnitTests", dependencies: ["Whodunnit"], path: "Tests/WhodunnitTests")
     ]
 )

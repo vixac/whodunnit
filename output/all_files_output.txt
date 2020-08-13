@@ -1,0 +1,14 @@
+.build/manifest.db
+Package.swift
+Sources/Whodunnit/x.swift
+Sources/WhodunnitMain/main.swift
+Tests/WhodunnitTests/y.swift
+Whodunnit.xcodeproj/WhodunnitTests_Info.plist
+Whodunnit.xcodeproj/Whodunnit_Info.plist
+Whodunnit.xcodeproj/project.pbxproj
+Whodunnit.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+Whodunnit.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+Whodunnit.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+Whodunnit.xcodeproj/project.xcworkspace/xcuserdata/shifu.xcuserdatad/UserInterfaceState.xcuserstate
+Whodunnit.xcodeproj/xcshareddata/xcschemes/Whodunnit-Package.xcscheme
+Whodunnit.xcodeproj/xcshareddata/xcschemes/WhodunnitMain.xcscheme

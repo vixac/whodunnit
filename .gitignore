@@ -1,0 +1,11 @@
+.DS_Store
+/*.build
+/*.swiftpm
+*.build/
+*/*.build/*
+*.build-ubuntu*
+/Packages
+/*.xcodeproj/*
+/*.pbxproj
+/*.xcuserstate
+config/
