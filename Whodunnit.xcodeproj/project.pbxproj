@@ -1231,17 +1231,17 @@
          isa = "PBXFileReference";
          explicitFileType = "sourcecode.swift";
          name = "Package.swift";
-         path = "/Users/shifu/code/whodunit/.build/checkouts/swift-argument-parser/Package.swift";
+         path = "/Users/shifu/code/whodunnit/.build/checkouts/swift-argument-parser/Package.swift";
          sourceTree = "<group>";
       };
       "OBJ_65" = {
          isa = "PBXGroup";
          children = (
-            "Whodunnit::WhodunnitMain::Product",
-            "Whodunnit::WhoFilesMain::Product",
-            "Whodunnit::WhodunnitLib::Product",
             "swift-argument-parser::ArgumentParser::Product",
-            "Whodunnit::WhodunnitTests::Product"
+            "Whodunnit::WhodunnitLib::Product",
+            "Whodunnit::WhodunnitTests::Product",
+            "Whodunnit::WhodunnitMain::Product",
+            "Whodunnit::WhoFilesMain::Product"
          );
          name = "Products";
          path = "";
