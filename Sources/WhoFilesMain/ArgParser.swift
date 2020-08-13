@@ -22,12 +22,12 @@ struct FileFilterArg: ParsableCommand {
         let contents = try String(contentsOfFile: listOfFiles)
         let sourceFilenames: [String] = contents.split(separator: "\n").map {"\($0)"}
         
-        let chosenFiles: [FileSummary]
+        let chosenFiles: [FileNameSummary]
         if let suffixes = suffixes {
             let suffixArray: [String] = suffixes.split(separator: " ").map {"\($0)"}
             chosenFiles = FileFilter.keepOnly(types: suffixArray, fileNames: sourceFilenames)
         } else {
-            chosenFiles = sourceFilenames.map { FileSummary(fullPath: $0)}
+            chosenFiles = sourceFilenames.map { FileNameSummary(fullPath: $0)}
         }
         //let allFilesCount = sourceFilenames.count
         //let chosenCount = chosenFiles.count
