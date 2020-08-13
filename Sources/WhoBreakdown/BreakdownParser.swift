@@ -9,17 +9,21 @@ struct BreakdownArg: ParsableCommand {
     var lineSummaryFile: String
     
     mutating func run() throws {
-        
-        guard let whoPath = Exec.getEnvironmentVar("WHO_DIR") else {
-            print("VX: who path not set. Error") //VX:TODO throw
-            return
-        }
-        
+
         let contents = try String(contentsOfFile: lineSummaryFile)
-        let sourceFilenames: [String] = contents.split(separator: "\n").map {"\($0)"}
-        try sourceFilenames.forEach {
-            print("VX: todo inspect this line: \($0)")
-            //try Exec.exec(call: ["\(whoPath)/scripts/blame_file.sh", $0])
+        let lines: [String] = contents.split(separator: "\n").map {"\($0)"}
+        let personMap = DirectPersonMap()
+        let summaries: [LineSummary?] =  lines.map { line in
+            print("VX: todo inspect this line: \(line)")
+            guard let summary = try? LineSummary(authorMapper: personMap, line: line) else {
+                return nil
+            }
+            return summary
         }
+        let filteredErrors: [LineSummary] = summaries.compactMap {$0}
+        let aggregation = LineAggregation(lines: filteredErrors)
+        
+        print("VX: there were \(summaries.count -  filteredErrors.count) ignored lines out of \(summaries.count) lines")
+        print("VX: aggregation is \(aggregation)")
     }
 }

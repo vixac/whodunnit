@@ -2,6 +2,7 @@ import Foundation
 
 public enum LineSummaryError: Error {
     case invalidDate(String)
+    case notEnoughWords(line: String)
 }
 
 //VX:TODO move this and test person map.
@@ -81,7 +82,10 @@ public struct LineSummary {
     
     public init( authorMapper: AuthorMapper, line: String) throws {
         let words: [String] = line.split(separator: " ").filter { $0 != " "}.map { "\($0)"}
-        print("VX: words are: \(words)")
+        //print("VX: words are: \(words)")
+        guard words.count > 4 else {
+            throw LineSummaryError.notEnoughWords(line: line)
+        }
         self.commit = words[0]
         self.fileSummary = FileNameSummary(fullPath: words[1])
         let authorAlias = words[3].replacingOccurrences(of: "(", with: "")
@@ -111,8 +115,8 @@ public struct Contributors {
 }
 
 public struct LineAggregation {
-    let contributors: Contributors
-    init(lines: [LineSummary]) {
+    public let contributors: Contributors
+    public init(lines: [LineSummary]) {
         var contribution: [Person: Int] = [:]
         lines.forEach {
             let person = $0.person
