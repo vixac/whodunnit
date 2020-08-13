@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Whodunnit::Whodunnit"
-               BuildableName = "Whodunnit.framework"
-               BlueprintName = "Whodunnit"
+               BlueprintIdentifier = "Whodunnit::WhodunnitMain"
+               BuildableName = "WhodunnitMain"
+               BlueprintName = "WhodunnitMain"
                ReferencedContainer = "container:Whodunnit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Whodunnit::WhodunnitMain"
-               BuildableName = "WhodunnitMain"
-               BlueprintName = "WhodunnitMain"
+               BlueprintIdentifier = "Whodunnit::WhodunnitLib"
+               BuildableName = "WhodunnitLib.framework"
+               BlueprintName = "WhodunnitLib"
+               ReferencedContainer = "container:Whodunnit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Whodunnit::WhoFilesMain"
+               BuildableName = "WhoFilesMain"
+               BlueprintName = "WhoFilesMain"
                ReferencedContainer = "container:Whodunnit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -16,6 +16,7 @@ Whodunnit.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsetting
 Whodunnit.xcodeproj/project.xcworkspace/xcuserdata/shifu.xcuserdatad/UserInterfaceState.xcuserstate
 Whodunnit.xcodeproj/xcshareddata/xcschemes/Whodunnit-Package.xcscheme
 Whodunnit.xcodeproj/xcshareddata/xcschemes/WhodunnitMain.xcscheme
+examples/get_plist_and_swift_files.sh
 output/all_files_output.txt
 scripts/all_files.sh
 scripts/blame_file.sh

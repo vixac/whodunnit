@@ -1,5 +1,5 @@
 import Foundation
-import Whodunnit
+import WhodunnitLib
 import ArgumentParser
 
 

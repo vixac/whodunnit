@@ -9,14 +9,16 @@ let package = Package(
         .macOS(.v10_15),
     ],
     products: [
-        .library(name: "Whodunnit", targets: ["Whodunnit"]),
-        .executable(name: "WhoFiles", targets: ["WhodunnitMain"]),
+        .library(name: "WhodunnitLib", targets: ["WhodunnitLib"]),
+        .executable(name: "WhoFiles", targets: ["WhoFilesMain"]),
+        .executable(name: "Whodunnit", targets: ["WhodunnitMain"]),
     ],
     dependencies: [
     .package(url: "https://github.com/apple/swift-argument-parser", from: "0.2.0")],
     targets: [
-        .target(name: "Whodunnit", dependencies: [] , path: "Sources/Whodunnit"), // no test
-         .target(name: "WhodunnitMain", dependencies: ["Whodunnit", "ArgumentParser"] , path: "Sources/WhodunnitMain"), // no test
-        .testTarget(name: "WhodunnitTests", dependencies: ["Whodunnit"], path: "Tests/WhodunnitTests")
+        .target(name: "WhodunnitLib", dependencies: [] , path: "Sources/Whodunnit"), // no test
+         .target(name: "WhoFilesMain", dependencies: ["WhodunnitLib", "ArgumentParser"] , path: "Sources/WhoFilesMain"),
+         .target(name: "WhodunnitMain", dependencies: ["WhodunnitLib", "ArgumentParser"] , path: "Sources/WhodunnitMain"),
+        .testTarget(name: "WhodunnitTests", dependencies: ["WhodunnitLib"], path: "Tests/WhodunnitTests")
     ]
 )
