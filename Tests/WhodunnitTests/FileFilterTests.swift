@@ -20,10 +20,10 @@ class FiltFilterTests: XCTestCase {
             return "\(index)\(prefix)\(suffix)"
         }
         
-        let swiftFiles = FileFilter.keepOnly(types: [.swift], fileNames: fileNames)
+        let swiftFiles = FileFilter.keepOnly(types: ["swift"], fileNames: fileNames)
         XCTAssertEqual(swiftFiles.count, 2)
-        XCTAssertEqual(swiftFiles[0].type, .swift)
-        XCTAssertEqual(swiftFiles[1].type, .swift)
+        XCTAssertEqual(swiftFiles[0].suffix, "swift")
+        XCTAssertEqual(swiftFiles[1].suffix, "swift")
         XCTAssertEqual(swiftFiles[0].fullPath.first, "0", "first swift file found should be the first file in the list")
         XCTAssertEqual(swiftFiles[1].fullPath.first, "2", "second swift file found shoul dbe the third file in the list") //
     }

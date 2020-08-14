@@ -2,8 +2,6 @@ import Foundation
 import WhodunnitLib
 import ArgumentParser
 
-
-
 struct FileFilterArg: ParsableCommand {
   //  @Flag(help: "Include a counter with each repetition.")
   //  var includeCounter = false

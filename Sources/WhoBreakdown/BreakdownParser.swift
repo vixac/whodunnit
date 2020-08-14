@@ -25,5 +25,8 @@ struct BreakdownArg: ParsableCommand {
         
         print("VX: there were \(summaries.count -  filteredErrors.count) ignored lines out of \(summaries.count) lines")
         print("VX: aggregation is \(aggregation)")
+        aggregation.contributors.authors.forEach { author in
+            print("VX: author \(author.person.name): lineCount: \(author.numLines)")
+        }
     }
 }
