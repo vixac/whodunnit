@@ -24,7 +24,13 @@ extension Exec {
     
     //git blame -lfnwM $1
     static public func createlineSummary(filename: String) throws {
-        try Exec.execAndPrint(call: ["./scripts/blame_file.sh", filename] )
+        guard let whoPath = Exec.getEnvironmentVar("WHO_DIR") else {
+            print("VX: who path not set. Error") //VX:TODO throw
+            return
+        }
+        
+        
+        try Exec.execAndPrint(call: ["\(whoPath)/scripts/blame_file.sh", filename] )
         //return try Exec.execute(call: ["wc","-l", filename] )
     }
 }
