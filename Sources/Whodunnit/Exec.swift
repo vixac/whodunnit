@@ -4,7 +4,7 @@ public class Exec
 {
     
     //VX:TODO RM
-    public static func exec(call: [String]) throws  {
+    public static func execAndPrint(call: [String]) throws  {
         let ls = Process()
         ls.executableURL = URL(fileURLWithPath: "/usr/bin/env")
         ls.arguments = call

@@ -4,10 +4,11 @@ import ArgumentParser
 
 public enum ReportType: String, CaseIterable {
     case authors
-    case file
-    case directory
-    case busfactor
+    //case file
+    //case directory
+    //case busfactor
     case fetchFiles
+    case lineByLine
     
     static func allOfThem() -> String {
         let cases = ReportType.allCases.map {$0.rawValue}
@@ -22,15 +23,30 @@ extension Exec {
     }
     
     //git blame -lfnwM $1
-    static public func createlineSummary(filename: String) throws -> [String] {
-        return try Exec.execute(call: ["./scripts/blame_file.sh", filename] )
+    static public func createlineSummary(filename: String) throws {
+        try Exec.execAndPrint(call: ["./scripts/blame_file.sh", filename] )
         //return try Exec.execute(call: ["wc","-l", filename] )
     }
 }
 
 
 class WhoLogic {
+    
     static func runFetchFiles(branch: String, suffixes: String?) throws {
+        let files = try fetchFiles(branch: branch, suffixes: suffixes)
+        files.forEach {
+           print("\($0.fullPath)")
+        }
+    }
+    
+    static func annotateFiles(branch: String, suffixes: String?) throws {
+        let files = try fetchFiles(branch: branch, suffixes: suffixes)
+        try files.forEach {
+            try Exec.createlineSummary(filename: $0.fullPath)
+            //print("VX: TODO create line summary for \($0)")
+        }
+    }
+    static func fetchFiles(branch: String, suffixes: String?) throws -> [FileNameSummary]  {
         let allFileNames = try Exec.allGitFilesInBranch(branch: branch)
         let chosenFiles: [FileNameSummary]
          if let suffixes = suffixes {
@@ -39,9 +55,8 @@ class WhoLogic {
         } else {
             chosenFiles = allFileNames.map { FileNameSummary(fullPath: $0)}
         }
-        chosenFiles.forEach {
-            print("\($0.fullPath)")
-        }
+        return chosenFiles
+
     }
     
     static func contributors(blameFile: String, personMap: AuthorMapper) throws  {
@@ -50,6 +65,7 @@ class WhoLogic {
         //let personMap = DirectPersonMap()
         let summaries: [LineSummary?] =  lines.map { line in
             guard let summary = try? LineSummary(authorMapper: personMap, line: line) else {
+                print("VX: TODO IGNORING THIS LINE: \(line)")
                 return nil
             }
             return summary
@@ -57,7 +73,7 @@ class WhoLogic {
         let filteredErrors: [LineSummary] = summaries.compactMap {$0}
         let aggregation = LineAggregation(lines: filteredErrors)
         
-        print("VX: there were \(summaries.count -  filteredErrors.count) ignored lines out of \(summaries.count) lines")
+        print("VX:xx there were \(summaries.count -  filteredErrors.count) ignored lines out of \(summaries.count) lines")
         //print("VX: aggregation is \(aggregation)")
         aggregation.contributors.authors.forEach { author in
             print("VX: author \(author.person.name ?? "Unknown Person"): lineCount: \(author.numLines)")
@@ -109,6 +125,10 @@ struct WhoArg: ParsableCommand {
                 throw WhoArgError.missingBlameFile
             }
             try WhoLogic.contributors(blameFile: blameFile, personMap: authorMap)
+        //case .lineByLine:
+        case .lineByLine:
+            //print("VX: TODO line by line")
+            try WhoLogic.annotateFiles(branch: theBranchName, suffixes: suffixes)
         default:
             print("VX report: \(theReportType) not supported yet.")
             
