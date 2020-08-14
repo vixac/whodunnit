@@ -18,7 +18,7 @@ struct BlamerArg: ParsableCommand {
         let contents = try String(contentsOfFile: listOfFiles)
         let sourceFilenames: [String] = contents.split(separator: "\n").map {"\($0)"}
         try sourceFilenames.forEach {
-            try Exec.exec(call: ["\(whoPath)/scripts/blame_file.sh", $0])
+            try Exec.execAndPrint(call: ["\(whoPath)/scripts/blame_file.sh", $0])
         }
     }
 }
