@@ -71,7 +71,7 @@ class WhoLogic {
         //let personMap = DirectPersonMap()
         let summaries: [LineSummary?] =  lines.map { line in
             guard let summary = try? LineSummary(authorMapper: personMap, line: line) else {
-                print("VX: TODO IGNORING THIS LINE: \(line)")
+                print("Error parsing this annotation line. Ignoring: \(line)")
                 return nil
             }
             return summary
@@ -79,10 +79,10 @@ class WhoLogic {
         let filteredErrors: [LineSummary] = summaries.compactMap {$0}
         let aggregation = LineAggregation(lines: filteredErrors)
         
-        print("VX:xx there were \(summaries.count -  filteredErrors.count) ignored lines out of \(summaries.count) lines")
+        print("Compete! There were \(summaries.count -  filteredErrors.count) ignored lines out of \(summaries.count) lines")
         //print("VX: aggregation is \(aggregation)")
         aggregation.contributors.authors.forEach { author in
-            print("VX: author \(author.person.name ?? "Unknown Person"): lineCount: \(author.numLines)")
+            print("Author \(author.person.name ?? "Unknown Person"): lineCount: \(author.numLines)")
         }
     }
 }

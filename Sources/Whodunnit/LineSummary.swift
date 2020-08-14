@@ -91,7 +91,11 @@ public struct LineSummary {
         
         
         var dateIndex: Int? = nil
-        for i in lineCountIndex..<words.count {
+        let afterLineCountIndex = lineCountIndex + 1
+        guard afterLineCountIndex < words.count else {
+            throw LineSummaryError.noLineCount(line)
+        }
+        for i in afterLineCountIndex..<words.count {
             if words[i].contains("20") {
                 dateIndex = i
                 break
@@ -105,6 +109,10 @@ public struct LineSummary {
         
         //let lastNameIndex = theDateIndex - 1
         var name: String = ""
+        
+        guard firstNameindex < theDateIndex else {
+            throw LineSummaryError.invalidDate(line)
+        }
         for i in firstNameindex..<theDateIndex {
             name += words[i]
             if i != theDateIndex - 1 {

@@ -59,6 +59,22 @@ class LineSummaryTests: XCTestCase {
             XCTFail("error is \(error)")
         }
     }
+    
+    func testLineTwenty() {
+         do {
+             let authorMapper = simpleAuthorMap()
+             let filter = try LineSummary(authorMapper: authorMapper, line: " 937e73692df8422507cfe84eaf7f163da387ac35 Source/VxdayView.swift       20 (v    2017-08-22 20:31:07 +0100 820)                           done 0c441b2b0")
+             
+             XCTAssertEqual(filter.commit, "937e73692df8422507cfe84eaf7f163da387ac35")
+             XCTAssertEqual(filter.fileSummary.suffix, "swift")
+             XCTAssertEqual(filter.lineNumber,20)
+             XCTAssertEqual(filter.person.name,"vic")
+             XCTAssertEqual(filter.commitDate.description,"2017-08-21 23:00:00 +0000")
+             
+         } catch {
+             XCTFail("error is \(error)")
+         }
+     }
     func testOneLineSingleName() {
         do {
             let authorMapper = simpleAuthorMap()
