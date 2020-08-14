@@ -6,7 +6,9 @@ import XCTest
 class LineSummaryTests: XCTestCase {
 
     func simpleAuthorMap() -> PersonMap {
-        return PersonMap(map: ["vic": ["bob smith", "v"]])
+        return PersonMap(map: ["vic": ["bob smith", "v"],
+                               "matt": ["Matt Le Blanc"]
+        ])
     }
     
     func testOneLine() {
@@ -18,6 +20,39 @@ class LineSummaryTests: XCTestCase {
             XCTAssertEqual(filter.fileSummary.suffix, "swift")
             XCTAssertEqual(filter.lineNumber,772)
             XCTAssertEqual(filter.person.name,"vic")
+            XCTAssertEqual(filter.commitDate.description,"2017-08-21 23:00:00 +0000")
+            
+        } catch {
+            XCTFail("error is \(error)")
+        }
+    }
+    
+    
+    func testOneLineSpacesInFilePath() {
+        do {
+            let authorMapper = simpleAuthorMap()
+            let filter = try LineSummary(authorMapper: authorMapper, line: " 937e73692df8422507cfe84eaf7f163da387ac35 Source/ Space s VxdayView.swift       772 (unknown    2017-08-22 20:31:07 +0100 820)                           done 0c441b2b0")
+            
+            XCTAssertEqual(filter.commit, "937e73692df8422507cfe84eaf7f163da387ac35")
+            XCTAssertEqual(filter.fileSummary.suffix, "swift")
+            XCTAssertEqual(filter.lineNumber,772)
+            XCTAssertEqual(filter.person.name,nil)
+            XCTAssertEqual(filter.commitDate.description,"2017-08-21 23:00:00 +0000")
+            
+        } catch {
+            XCTFail("error is \(error)")
+        }
+    }
+    
+    func testOneLineTripleName() {
+        do {
+            let authorMapper = simpleAuthorMap()
+            let filter = try LineSummary(authorMapper: authorMapper, line: " 937e73692df8422507cfe84eaf7f163da387ac35 Source/VxdayView.swift       772 (Matt Le Blanc    2017-08-22 20:31:07 +0100 820)                           done 0c441b2b0")
+            
+            XCTAssertEqual(filter.commit, "937e73692df8422507cfe84eaf7f163da387ac35")
+            XCTAssertEqual(filter.fileSummary.suffix, "swift")
+            XCTAssertEqual(filter.lineNumber,772)
+            XCTAssertEqual(filter.person.name,"matt")
             XCTAssertEqual(filter.commitDate.description,"2017-08-21 23:00:00 +0000")
             
         } catch {
