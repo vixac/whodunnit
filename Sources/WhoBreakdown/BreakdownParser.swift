@@ -10,11 +10,11 @@ struct BreakdownArg: ParsableCommand {
     
     mutating func run() throws {
 
+        //VX:TODO migrating to WhoLogic
         let contents = try String(contentsOfFile: lineSummaryFile)
         let lines: [String] = contents.split(separator: "\n").map {"\($0)"}
         let personMap = DirectPersonMap()
         let summaries: [LineSummary?] =  lines.map { line in
-            print("VX: todo inspect this line: \(line)")
             guard let summary = try? LineSummary(authorMapper: personMap, line: line) else {
                 return nil
             }

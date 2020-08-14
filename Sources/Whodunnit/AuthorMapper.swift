@@ -49,7 +49,7 @@ public class PersonMap: AuthorMapper {
         }
         self.init(map: map)
     }
-    init(map: [String: [String]]) { //this is person Name -> [git name]
+   public init(map: [String: [String]]) { //this is person Name -> [git name]
         
         var reverseMap: [String: String] = [:]
         map.keys.forEach { personName in
